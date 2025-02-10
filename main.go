@@ -81,7 +81,7 @@ func main() {
 	r := http.NewServeMux()
 
 	r.Handle("/", ProxyMiddleware(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Post to GET!"))
+		http.Error(w, "Not found", http.StatusNotFound)
 	})))
 
 	log.Printf("Proxy server is running on :%s\n", port)
